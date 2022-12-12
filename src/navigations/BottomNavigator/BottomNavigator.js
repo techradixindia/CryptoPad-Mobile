@@ -3,16 +3,15 @@ import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../../screens/UserScreens/HomeScreen';
 import MyOrders from '../../screens/UserScreens/MyOrders';
-import Offers from '../../screens/UserScreens/HistoryScreen';
 import Profile from '../../screens/UserScreens/Profile';
 import HomeIcon from 'react-native-vector-icons/AntDesign'
 import OrderIcon from 'react-native-vector-icons/AntDesign'
 import History from 'react-native-vector-icons/MaterialCommunityIcons'
 import ProfileIcon from 'react-native-vector-icons/FontAwesome'
 import Plus from "react-native-vector-icons/Entypo"
-import Income from '../../screens/Income';
 import Wallet from "react-native-vector-icons/Ionicons"
 import HistoryScreen from '../../screens/UserScreens/HistoryScreen';
+import Income from '../../screens/UserScreens/Income';
 
 const Tab = createBottomTabNavigator();
 

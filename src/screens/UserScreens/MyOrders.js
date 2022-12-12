@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View, TextInput, FlatList, Image } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, TextInput, FlatList, Image, TouchableWithoutFeedback, SafeAreaView } from 'react-native'
 import React from 'react'
 import { ProgressBar } from 'react-native-paper';
 import DummyData from './DummyData';
@@ -7,6 +7,7 @@ import Plus from "react-native-vector-icons/Entypo"
 
 const MyOrders = () => {
   return (
+
     <View style={{ flex: 1, backgroundColor: "#000", paddingHorizontal: 10 }}>
       <View style={{ flex: 1 }}>
         <View style={{ justifyContent: "center", alignItems: "flex-start", flexDirection: "row", marginTop: 20 }}>
