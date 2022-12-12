@@ -1,4 +1,4 @@
-package com.ondoordabba.newarchitecture.components;
+package com.CryptoPad.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;
