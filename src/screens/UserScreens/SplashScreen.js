@@ -1,24 +1,15 @@
 
 
-import {View, Text, StyleSheet, Image, StatusBar} from 'react-native';
+import { View, Text, StyleSheet, Image, StatusBar } from 'react-native';
 import React from 'react';
-import Logo from '../../assets/images/logo.jpg';
+import Logo from '../../assets/images/cryptopadLogo.png';
 
 export default function SplashScreen() {
   return (
     <View style={styles.container}>
       <StatusBar hidden={true} />
-
-      <View></View>
-
       <View style={styles.logoContainer}>
         <Image source={Logo} style={styles.logo} />
-
-        <Text style={styles.text}>Ondoor Dabba</Text>
-      </View>
-
-      <View style={styles.bottomContainer}>
-        <Text style={styles.bottomText}>Made With 💗 Tech Radix</Text>
       </View>
     </View>
   );
@@ -32,17 +23,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logoContainer: {
+    justifyContent: "center",
     alignItems: 'center',
   },
   logo: {
     height: 200,
     width: 200,
-  },
-  text: {
-    color: '#fff',
-  },
-  bottomContainer: {},
-  bottomText: {
-    color: '#fff',
   },
 });
