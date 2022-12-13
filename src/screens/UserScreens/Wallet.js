@@ -18,7 +18,7 @@ const MyOrders = () => {
               <Text style={{ color: '#DCDCDC' }}><Text style={{ color: "#87CEEB" }}>100% </Text>Exchanges</Text>
             </View>
           </View>
-          <TouchableOpacity style={{ flex: 1, backgroundColor: "#303030", paddingHorizontal: 5, height: 30, left: 10, borderRadius: 7, justifyContent: "center", alignItems: "center" }}>
+          <TouchableOpacity style={{ flex: 1, backgroundColor: "#303030", paddingHorizontal: 10, marginHorizontal: 10, height: 30, borderRadius: 7, justifyContent: "center", alignItems: "center" }}>
             <Text style={{ color: '#DCDCDC' }}>Refresh All</Text>
           </TouchableOpacity>
         </View>
@@ -61,7 +61,8 @@ export default MyOrders
 
 const styles = StyleSheet.create({
   input: {
-    width: 396,
+    // width: 396,
+    alignSelf: "stretch",
     height: 35,
     backgroundColor: '#282828',
     borderWidth: 1,
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
   black_button: {
     color: 'black',
     backgroundColor: "#87CEEB",
-    width: 396,
+    alignSelf: "stretch",
     height: 50,
     borderRadius: 10,
     textAlign: 'center',
