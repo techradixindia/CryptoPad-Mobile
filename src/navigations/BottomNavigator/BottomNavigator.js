@@ -17,33 +17,30 @@ const Tab = createBottomTabNavigator();
 
 const BottomNavigator = ({ navigation }) => {
   return (
-    <Tab.Navigator shifting={true}>
+    <Tab.Navigator shifting={true} screenOptions={{ tabBarStyle: { height: 50 }, tabBarHideOnKeyboard: true, tabBarActiveTintColor: "#E93858" }}>
       <Tab.Screen name="Dashboard" component={HomeScreen}
         options={{
-          tabBarIcon: () => {
-            return <HomeIcon name="dashboard" size={25} color="black" />
+          tabBarIcon: ({ focused }) => {
+            return <HomeIcon name="dashboard" size={25} color="grey" />
           },
 
-          headerTitleAlign: "left", headerTitle: "Dashboard", headerStyle: { backgroundColor: "#000" }, headerTintColor: "#fff"
+          headerTitleAlign: "left", headerTitle: "Dashboard", headerStyle: { backgroundColor: "#000" }, headerTintColor: "#fff",
         }}
       />
 
-
       <Tab.Screen name="Income" component={Income}
         options={{
-          tabBarIcon: () => {
-            return <OrderIcon name="plus" size={25} color="black" />
+          tabBarIcon: ({ focused }) => {
+            return <OrderIcon name="plus" size={25} color="grey" />
           },
           headerTitleAlign: "left", headerTitle: "Income", headerStyle: { backgroundColor: "#000" }, headerTintColor: "#fff"
         }}
       />
 
-
-
       <Tab.Screen name="Wallet" component={MyOrders}
         options={{
-          tabBarIcon: () => {
-            return <Wallet name="wallet" size={25} color="black" />
+          tabBarIcon: ({ focused }) => {
+            return <Wallet name="wallet" size={25} color="grey" />
           },
           headerRight: () => (
             <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
@@ -59,26 +56,23 @@ const BottomNavigator = ({ navigation }) => {
           headerTitleAlign: "left", headerTitle: "Wallets", headerStyle: { backgroundColor: "#000" }, headerTintColor: "#fff"
         }}
       />
+
       <Tab.Screen name="History" component={HistoryScreen}
         options={{
-          tabBarIcon: () => {
-            return <History name="history" size={25} color="black" />
+          tabBarIcon: ({ focused }) => {
+            return <History name="history" size={25} color="grey" />
           },
-          // headerLeft: () => (
-          //   <Hamburger name="navicon" size={30} color="black" style={{ padding: 10 }} onPress={() => navigation.openDrawer()} />
-          // ),
+
           headerTitleAlign: "left", headerTitle: "History", headerStyle: { backgroundColor: "#000" }, headerTintColor: "#fff"
         }}
       />
       <Tab.Screen name="Profile" component={Profile}
         options={{
-          tabBarIcon: () => {
-            return <ProfileIcon name="user" size={25} color="black" />
+          tabBarIcon: ({ focused }) => {
+            return <ProfileIcon name="user" size={25} color="grey" />
           },
-          // headerLeft: () => (
-          //   <Hamburger name="navicon" size={30} color="black" style={{ padding: 10 }} onPress={() => navigation.openDrawer()} />
-          // ),
-          headerTitleAlign: "left"
+
+          headerTitleAlign: "left", headerTitle: "Profile", headerStyle: { backgroundColor: "#000" }, headerTintColor: "#fff"
         }}
       />
     </Tab.Navigator>

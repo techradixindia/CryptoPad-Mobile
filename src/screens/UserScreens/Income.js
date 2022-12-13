@@ -33,7 +33,7 @@ const Income = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1, backgroundColor: '#000' }}>
-            <View style={{ flex: 1, paddingHorizontal: 20 }}>
+            <View style={{ flex: 1, paddingHorizontal: 20, justifyContent: "center", alignItems: "center" }}>
                 <BarChart
                     data={data}
                     width={Dimensions.get('window').width}
