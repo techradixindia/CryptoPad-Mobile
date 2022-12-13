@@ -23,7 +23,7 @@ const MyOrders = () => {
           </TouchableOpacity>
         </View>
         <View style={{ marginTop: 30 }}>
-          <TextInput placeholderTextColor='darkgrey' placeholder='Search for wallet or exchnage' style={styles.input}></TextInput>
+          <TextInput placeholderTextColor='darkgrey' placeholder='Search for wallet or exchange' style={styles.input}></TextInput>
           <TouchableOpacity style={{ marginTop: 10 }} ><Text style={[styles.black_button, { marginTop: 10 }]}>Add your first wallet</Text></TouchableOpacity>
         </View>
         <View style={{ marginTop: 30 }}>
@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#282828',
     borderRadius: 5,
-    color: "#000"
+    color: "#000",
+    paddingHorizontal: 15
   },
   black_button: {
     color: 'black',
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
   text1: {
     fontSize: 14,
     fontWeight: "400",
-    color: "darkgrey",
+    color: "#8a96a1",
     marginLeft: 20,
     marginTop: 5
   },

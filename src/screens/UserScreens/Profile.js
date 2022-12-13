@@ -6,17 +6,18 @@ import Avtar from '../../assets/images/avatar.png';
 export default function Profile() {
   const navigation = useNavigation();
   return (
-    <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', marginTop: 20, padding: 10 }}>
-      <Image source={Avtar} style={{ height: 80, width: 80, borderRadius: 100, marginBottom: 30 }} />
-      <TextInput placeholderTextColor="#000" placeholder='First Name' style={styles.form_input_inner}></TextInput>
-      <TextInput placeholderTextColor="#000" placeholder='Last Name' style={styles.form_input_inner1}></TextInput>
-      <TextInput placeholderTextColor="#000" placeholder='Email_ID' style={styles.form_input_inner2}></TextInput>
+    <View style={{ flex: 1, justifyContent: 'flex-start', paddingHorizontal: 15, alignItems: 'center', backgroundColor: "#000" }}>
+      <Image source={Avtar} style={{ height: 80, width: 80, borderRadius: 100, borderWidth: 1, borderColor: "white" }} />
+      <Text style={{ color: "white", marginTop: 10, fontWeight: "400" }}>Edit Profile</Text>
+      <TextInput placeholderTextColor="#000" placeholder='First Name' style={[styles.form_input_inner, { marginTop: 20 }]}></TextInput>
+      <TextInput placeholderTextColor="#000" placeholder='Last Name' style={[styles.form_input_inner, { marginTop: 10 }]}></TextInput>
+      <TextInput placeholderTextColor="#000" placeholder='Email_ID' style={[styles.form_input_inner, { marginTop: 10 }]}></TextInput>
 
-      <TouchableOpacity style={[styles.appButtonContainer, { backgroundColor: "#000" }]}>
+      <TouchableOpacity style={[styles.appButtonContainer, { backgroundColor: "#87CEEB" }]}>
         <Text style={styles.appButtonText}>Update Profile</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Login')} style={[styles.appButtonContainer, { backgroundColor: "#000" }]}>
+      <TouchableOpacity onPress={() => navigation.navigate('Login')} style={[styles.appButtonContainer, { backgroundColor: "#87CEEB" }]}>
         <Text style={styles.appButtonText}>Logout</Text>
       </TouchableOpacity>
     </View>
@@ -29,15 +30,14 @@ const styles = StyleSheet.create({
     elevation: 5,
     height: 50,
     width: "100%",
-    backgroundColor: "#04C6F1",
-    borderRadius: 30,
+    borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 12,
 
   },
   appButtonText: {
     fontSize: 18,
-    color: "#fff",
+    color: "#000",
     fontWeight: "500",
     alignSelf: "center",
 
@@ -48,36 +48,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderWidth: 1,
     borderColor: '#fff',
-    borderRadius: 30,
+    borderRadius: 10,
     paddingHorizontal: 20,
     color: "black"
   },
-  form_input_inner1: {
-    width: "100%",
-    height: 50,
-    backgroundColor: 'white',
-    borderWidth: 1,
-    borderColor: '#fff',
-    borderRadius: 30,
-    paddingHorizontal: 20,
-    color: "black",
-    marginTop: 10,
-  },
-  form_input_inner2: {
-    width: "100%",
-    height: 50,
-    backgroundColor: 'white',
-    borderWidth: 1,
-    borderColor: '#fff',
-    borderRadius: 30,
-    paddingHorizontal: 20,
-    color: "black",
-    marginTop: 10,
-  },
-
-
-
-
-
 
 })
