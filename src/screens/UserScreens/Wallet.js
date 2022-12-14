@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View, TextInput, FlatList, Image, TouchableWithoutFeedback, SafeAreaView } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, TextInput, FlatList, Image, Keyboard, KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
 import React from 'react'
 import { ProgressBar } from 'react-native-paper';
 import DummyData from './DummyData';
@@ -30,6 +30,7 @@ const MyOrders = () => {
           <Text style={{ color: "#87CEEB", fontSize: 20 }}>My Exchanges +</Text>
         </View>
       </View>
+
       <View style={{ flex: 1.5 }}>
         <FlatList
           data={DummyData}
@@ -107,3 +108,8 @@ const styles = StyleSheet.create({
   },
 
 })
+
+
+
+
+

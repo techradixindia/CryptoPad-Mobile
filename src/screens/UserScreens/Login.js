@@ -5,12 +5,51 @@ import LinearGradient from 'react-native-linear-gradient';
 import Logo from '../../assets/images/cryptopadFullLogo.png';
 import CheckBox from '@react-native-community/checkbox';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { baseUrl } from '../../utils/env';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Login() {
-  const [toggleCheckBox, setToggleCheckBox] = useState(false)
 
   const navigation = useNavigation();
+
   const height = Dimensions.get('window').height
+
+  const [toggleCheckBox, setToggleCheckBox] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+
+  const onLogin = () => {
+    // setIsLoading(true)
+    const config = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-type": "application/json"
+      }
+    };
+    const body = {
+      email: email,
+      password: password
+    }
+    axios.post(`${baseUrl}login/`, body, config)
+      .then((res) => {
+        console.log("success", res.data.data)
+        const userInfo = res.data.data
+        AsyncStorage.setItem("cpad", JSON.stringify(userInfo))
+        if (res.data.data.status === 200) {
+          navigation.navigate("BottomNavigator")
+        }
+      }
+      )
+      .catch(err => {
+        // setIsLoading(false)
+        console.log("error", err.response.data)
+
+      }
+      )
+
+  }
 
   return (
     <LinearGradient colors={['#fff', '#fff']} style={[{ flex: 1 }]}>
@@ -29,7 +68,9 @@ export default function Login() {
                   autoCorrect={false}
                   style={{ color: 'darkBlue', flex: 1 }}
                   placeholder="Email Address"
-                  placeholderTextColor={"#000"} />
+                  placeholderTextColor={"#000"}
+                  value={email}
+                  onChangeText={text => setEmail(text)} />
               </View>
 
               <View style={[styles.inputContainer, { marginTop: 10 }]}>
@@ -37,7 +78,10 @@ export default function Login() {
                   autoCorrect={false}
                   style={{ color: 'darkBlue', flex: 1 }}
                   placeholder="Password"
-                  placeholderTextColor={"#000"} />
+                  placeholderTextColor={"#000"}
+                  value={password}
+                  onChangeText={text => setPassword(text)}
+                  secureTextEntry />
 
                 <Icon
                   name={'eye-outline'}
@@ -49,12 +93,12 @@ export default function Login() {
                   tintColors={{ true: '#6777ef', false: 'grey' }}
                   disabled={false}
                   value={toggleCheckBox}
-                  onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                />
+                  onValueChange={(newValue) => setToggleCheckBox(newValue)} />
+
                 <Text style={{ color: "black", textAlign: "center" }}>I have reviewed and agree to the <Text style={{ color: "#6777ef" }}>Terms & conditions</Text></Text>
               </View>
 
-              <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('BottomNavigator')}>
+              <TouchableOpacity style={styles.buttonContainer} onPress={() => { onLogin() }}>
                 <Text style={{ flex: 1, color: "white", textAlign: "center", fontSize: 18 }}>Login</Text>
               </TouchableOpacity>
             </View>

@@ -2,9 +2,55 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Avtar from '../../assets/images/avatar.png';
+import { baseUrl } from '../../utils/env';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Profile() {
   const navigation = useNavigation();
+
+  {/* *********************Logout Start********************/ }
+  const onClickLogout = async () => {
+    // setIsLoading(true)
+    const value = await AsyncStorage.getItem('cpad');
+    var updatedValue = JSON.parse(value);
+    let config = {
+      headers: {
+        "Authorization": `${updatedValue.results.access_token}`,
+      },
+    }
+    let url = baseUrl + 'logout/'
+    axios.delete(url, config)
+      .then(res => {
+        console.log("success", res);
+        if (res.data.code === 200) {
+          // setVisible(false)
+          // setIsLoading(false)
+          AsyncStorage.removeItem('cpad');
+          AsyncStorage.clear()
+          // Toast.show({
+          //   type: 'success',
+          //   text1: 'Success',
+          //   text2: 'Logout Successfully',
+          // });
+          navigation.navigate('Login')
+        }
+
+      })
+      .catch(err => {
+        console.log("error", err);
+        // setIsLoading(false)
+        // Toast.show({
+        //   type: 'error',
+        //   text1: 'error',
+        //   text2: err.response.data.errors[0].error
+        // });
+      })
+
+  }
+  {/* *********************Logout End********************/ }
+
+
   return (
     <View style={{ flex: 1, justifyContent: 'flex-start', paddingHorizontal: 15, alignItems: 'center', backgroundColor: "#000" }}>
       <Image source={Avtar} style={{ height: 80, width: 80, borderRadius: 100, borderWidth: 1, borderColor: "white" }} />
@@ -17,7 +63,7 @@ export default function Profile() {
         <Text style={styles.appButtonText}>Update Profile</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Login')} style={[styles.appButtonContainer, { backgroundColor: "#87CEEB" }]}>
+      <TouchableOpacity onPress={() => onClickLogout()} style={[styles.appButtonContainer, { backgroundColor: "#87CEEB" }]}>
         <Text style={styles.appButtonText}>Logout</Text>
       </TouchableOpacity>
     </View>
