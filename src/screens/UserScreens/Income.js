@@ -31,18 +31,19 @@ const Income = ({ navigation }) => {
             <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
                 <BarChart
                     data={data}
-                    width={Dimensions.get('window').width}
+                    width={Dimensions.get('window').width - 20}
                     height={220}
                     const chartConfig={{
-                        backgroundGradientFrom: "rgba(255,255,255,1)",
-                        backgroundGradientFromOpacity: 0,
-                        backgroundGradientTo: "#08130D",
-                        backgroundGradientToOpacity: 0.5,
-                        color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+                        backgroundGradientFrom: "blue",
+                        backgroundGradientFromOpacity: 1,
+                        backgroundGradientTo: "red",
+                        backgroundGradientToOpacity: 1,
+                        color: (opacity = 1) => `rgba(255, 255, 255, 1)`,
                         strokeWidth: 2, // optional, default 3
                         barPercentage: 0.5,
                         useShadowColorFromDataset: false
                     }}
+                    style={{ borderRadius: 10, alignSelf: "center" }}
                 />
                 <View style={{ justifyContent: "center", alignItems: "center", marginTop: 15 }}>
                     <Text style={{ color: "#fff", fontSize: 18, fontWeight: "bold" }}>$1,028.48</Text>

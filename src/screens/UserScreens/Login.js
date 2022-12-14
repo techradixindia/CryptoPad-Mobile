@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TouchableWithoutFeedback, SafeAreaView, Image, TextInput, StyleSheet, Dimensions, StatusBar } from 'react-native';
+import { View, Text, TouchableOpacity, TouchableWithoutFeedback, SafeAreaView, Image, TextInput, StyleSheet, Dimensions, StatusBar, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import Logo from '../../assets/images/cryptopadFullLogo.png';
@@ -8,6 +8,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { baseUrl } from '../../utils/env';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toast from 'react-native-toast-message';
+import Spinner from './Spinner';
 
 export default function Login() {
 
@@ -21,7 +23,7 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false)
 
   const onLogin = () => {
-    // setIsLoading(true)
+    setIsLoading(true)
     const config = {
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -34,28 +36,39 @@ export default function Login() {
     }
     axios.post(`${baseUrl}login/`, body, config)
       .then((res) => {
-        console.log("success", res.data.data)
+        setIsLoading(false)
         const userInfo = res.data.data
         AsyncStorage.setItem("cpad", JSON.stringify(userInfo))
         if (res.data.data.status === 200) {
           navigation.navigate("BottomNavigator")
+          Toast.show({
+            type: 'success',
+            text1: 'success',
+            text2: "Login Successfully!"
+          });
         }
       }
       )
       .catch(err => {
-        // setIsLoading(false)
-        console.log("error", err.response.data)
-
+        setIsLoading(false)
+        Toast.show({
+          type: 'error',
+          text1: 'error',
+          text2: err
+        });
       }
       )
-
   }
 
+
+
   return (
-    <LinearGradient colors={['#fff', '#fff']} style={[{ flex: 1 }]}>
-      <StatusBar hidden={true} />
-      <TouchableWithoutFeedback>
+    <View style={[{ flex: 1, backgroundColor: "white" }]}>
+      <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
         <SafeAreaView>
+          <StatusBar hidden={true} />
+          <Toast />
+          <Spinner isLoading={isLoading} />
           <View style={[{ height: height }]}>
             <View style={{ justifyContent: 'center', alignItems: 'center', height: height * 0.36 }}>
               <Image source={Logo} style={styles.logo1} />
@@ -105,7 +118,7 @@ export default function Login() {
           </View >
         </SafeAreaView>
       </TouchableWithoutFeedback>
-    </LinearGradient>
+    </View>
   );
 }
 
