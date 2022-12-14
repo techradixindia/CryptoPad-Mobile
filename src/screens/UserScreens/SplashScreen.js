@@ -1,10 +1,26 @@
 
 
 import { View, Text, StyleSheet, Image, StatusBar } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Logo from '../../assets/images/cryptopadLogo.png';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function SplashScreen() {
+const SplashScreen = ({ navigation }) => {
+
+  useEffect(() => {
+    setTimeout(() => {
+      auth()
+    }, 1650)
+
+  })
+  const auth = async () => {
+    const value = await AsyncStorage.getItem('cpad');
+    let updatedValue = JSON.parse(value);
+    if (updatedValue) {
+      navigation.navigate('BottomNavigator')
+    }
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar hidden={true} />
@@ -14,6 +30,8 @@ export default function SplashScreen() {
     </View>
   );
 }
+
+export default SplashScreen
 
 const styles = StyleSheet.create({
   container: {

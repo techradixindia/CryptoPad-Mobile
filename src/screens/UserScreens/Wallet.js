@@ -1,9 +1,10 @@
-import { StyleSheet, Text, TouchableOpacity, View, TextInput, FlatList, Image, TouchableWithoutFeedback, SafeAreaView } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, TextInput, FlatList, Image, } from 'react-native'
 import React from 'react'
 import { ProgressBar } from 'react-native-paper';
 import DummyData from './DummyData';
 import Iconfirst from "../../assets/images/icon1.png"
 import Plus from "react-native-vector-icons/Entypo"
+import Icon from 'react-native-vector-icons/AntDesign';
 
 const MyOrders = () => {
   return (
@@ -18,18 +19,30 @@ const MyOrders = () => {
               <Text style={{ color: '#DCDCDC' }}><Text style={{ color: "#87CEEB" }}>100% </Text>Exchanges</Text>
             </View>
           </View>
-          <TouchableOpacity style={{ flex: 1, backgroundColor: "#303030", paddingHorizontal: 5, height: 30, left: 10, borderRadius: 7, justifyContent: "center", alignItems: "center" }}>
+          <TouchableOpacity style={{ flex: 1, backgroundColor: "#303030", paddingHorizontal: 10, marginHorizontal: 10, height: 30, borderRadius: 7, justifyContent: "center", alignItems: "center" }}>
             <Text style={{ color: '#DCDCDC' }}>Refresh All</Text>
           </TouchableOpacity>
         </View>
         <View style={{ marginTop: 30 }}>
-          <TextInput placeholderTextColor='darkgrey' placeholder='Search for wallet or exchange' style={styles.input}></TextInput>
+
+          <View style={[styles.inputContainer, { marginTop: 10 }]}>
+            <Icon
+              name={'search1'}
+              style={{ color: "#8a96a1", fontSize: 18 }} />
+            <TextInput
+              autoCorrect={false}
+              style={{ color: 'darkBlue', flex: 1, paddingVertical: 8 }}
+              placeholder="Search for wallet or exchange"
+              placeholderTextColor={"#8a96a1"}
+            />
+          </View>
           <TouchableOpacity style={{ marginTop: 10 }} ><Text style={[styles.black_button, { marginTop: 10 }]}>Add your first wallet</Text></TouchableOpacity>
         </View>
         <View style={{ marginTop: 30 }}>
           <Text style={{ color: "#87CEEB", fontSize: 20 }}>My Exchanges +</Text>
         </View>
       </View>
+
       <View style={{ flex: 1.5 }}>
         <FlatList
           data={DummyData}
@@ -61,7 +74,9 @@ export default MyOrders
 
 const styles = StyleSheet.create({
   input: {
-    width: 396,
+    // width: 396,
+    flex: 1,
+    alignSelf: "stretch",
     height: 35,
     backgroundColor: '#282828',
     borderWidth: 1,
@@ -73,7 +88,7 @@ const styles = StyleSheet.create({
   black_button: {
     color: 'black',
     backgroundColor: "#87CEEB",
-    width: 396,
+    alignSelf: "stretch",
     height: 50,
     borderRadius: 10,
     textAlign: 'center',
@@ -104,5 +119,21 @@ const styles = StyleSheet.create({
     color: "#fff",
     marginLeft: 20
   },
-
+  inputContainer: {
+    height: 35,
+    flexDirection: 'row',
+    backgroundColor: '#282828',
+    borderWidth: 1,
+    borderRadius: 10,
+    // color: "#fff",
+    borderColor: '#282828',
+    elevation: 3,
+    alignItems: 'center',
+    paddingHorizontal: 10,
+  },
 })
+
+
+
+
+
