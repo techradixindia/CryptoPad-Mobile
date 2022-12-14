@@ -1,9 +1,10 @@
-import { StyleSheet, Text, TouchableOpacity, View, TextInput, FlatList, Image, Keyboard, KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, TextInput, FlatList, Image, } from 'react-native'
 import React from 'react'
 import { ProgressBar } from 'react-native-paper';
 import DummyData from './DummyData';
 import Iconfirst from "../../assets/images/icon1.png"
 import Plus from "react-native-vector-icons/Entypo"
+import Icon from 'react-native-vector-icons/AntDesign';
 
 const MyOrders = () => {
   return (
@@ -23,7 +24,18 @@ const MyOrders = () => {
           </TouchableOpacity>
         </View>
         <View style={{ marginTop: 30 }}>
-          <TextInput placeholderTextColor='darkgrey' placeholder='Search for wallet or exchange' style={styles.input}></TextInput>
+
+          <View style={[styles.inputContainer, { marginTop: 10 }]}>
+            <Icon
+              name={'search1'}
+              style={{ color: "#8a96a1", fontSize: 18 }} />
+            <TextInput
+              autoCorrect={false}
+              style={{ color: 'darkBlue', flex: 1, paddingVertical: 8 }}
+              placeholder="Search for wallet or exchange"
+              placeholderTextColor={"#8a96a1"}
+            />
+          </View>
           <TouchableOpacity style={{ marginTop: 10 }} ><Text style={[styles.black_button, { marginTop: 10 }]}>Add your first wallet</Text></TouchableOpacity>
         </View>
         <View style={{ marginTop: 30 }}>
@@ -63,6 +75,7 @@ export default MyOrders
 const styles = StyleSheet.create({
   input: {
     // width: 396,
+    flex: 1,
     alignSelf: "stretch",
     height: 35,
     backgroundColor: '#282828',
@@ -106,7 +119,18 @@ const styles = StyleSheet.create({
     color: "#fff",
     marginLeft: 20
   },
-
+  inputContainer: {
+    height: 35,
+    flexDirection: 'row',
+    backgroundColor: '#282828',
+    borderWidth: 1,
+    borderRadius: 10,
+    // color: "#fff",
+    borderColor: '#282828',
+    elevation: 3,
+    alignItems: 'center',
+    paddingHorizontal: 10,
+  },
 })
 
 

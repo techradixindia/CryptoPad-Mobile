@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TouchableWithoutFeedback, SafeAreaView, Image, TextInput, StyleSheet, Dimensions, StatusBar, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import LinearGradient from 'react-native-linear-gradient';
 import Logo from '../../assets/images/cryptopadFullLogo.png';
 import CheckBox from '@react-native-community/checkbox';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -20,54 +19,79 @@ export default function Login() {
   const [toggleCheckBox, setToggleCheckBox] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [emailError, setEmailError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   const onLogin = () => {
-    setIsLoading(true)
-    const config = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-type": "application/json"
-      }
-    };
-    const body = {
-      email: email,
-      password: password
+    let error = 0;
+    if (email == null || email == '') {
+      setEmailError("Email is required*")
+      error = 1
+    } else {
+      setEmailError('')
     }
-    axios.post(`${baseUrl}login/`, body, config)
-      .then((res) => {
-        setIsLoading(false)
-        const userInfo = res.data.data
-        AsyncStorage.setItem("cpad", JSON.stringify(userInfo))
-        if (res.data.data.status === 200) {
-          navigation.navigate("BottomNavigator")
+    if (password == null || password == '') {
+      setPasswordError("Password is required*")
+      error = 1
+    } else {
+      setPasswordError('')
+    }
+    if (error == 0) {
+      setIsLoading(true)
+      const config = {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-type": "application/json"
+        }
+      };
+      const body = {
+        email: email,
+        password: password
+      }
+      axios.post(`${baseUrl}login/`, body, config)
+        .then((res) => {
+          setIsLoading(false)
+          const userInfo = res.data.data
+          AsyncStorage.setItem("cpad", JSON.stringify(userInfo))
+          if (res.data.data.status === 200) {
+            navigation.navigate("BottomNavigator")
+            Toast.show({
+              type: 'success',
+              text1: 'Success',
+              text2: "Login Successfully!"
+            });
+          }
+        }
+        )
+        .catch(err => {
+          setIsLoading(false)
           Toast.show({
-            type: 'success',
-            text1: 'success',
-            text2: "Login Successfully!"
+            type: 'error',
+            text1: 'Error',
+            text2: err
           });
         }
-      }
-      )
-      .catch(err => {
-        setIsLoading(false)
-        Toast.show({
-          type: 'error',
-          text1: 'error',
-          text2: err
-        });
-      }
-      )
+        )
+    }
   }
 
-
+  const message = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Error',
+      text2: "Please agree to the terms & conditions"
+    });
+  }
 
   return (
     <View style={[{ flex: 1, backgroundColor: "white" }]}>
       <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
         <SafeAreaView>
           <StatusBar hidden={true} />
-          <Toast />
+          <View style={{ zIndex: 1 }}>
+            <Toast />
+          </View>
           <Spinner isLoading={isLoading} />
           <View style={[{ height: height }]}>
             <View style={{ justifyContent: 'center', alignItems: 'center', height: height * 0.36 }}>
@@ -83,8 +107,19 @@ export default function Login() {
                   placeholder="Email Address"
                   placeholderTextColor={"#000"}
                   value={email}
-                  onChangeText={text => setEmail(text)} />
+                  onChangeText={(text) => {
+                    setEmail(text)
+                    text == null || text == '' ? setEmailError('Email is required*') : setEmailError('')
+                  }}
+                />
+
               </View>
+              {
+                emailError !== '' &&
+                <View style={{ width: "100%", paddingHorizontal: 25, marginTop: 5 }}>
+                  <Text style={{ color: "red" }}>{emailError}</Text>
+                </View>
+              }
 
               <View style={[styles.inputContainer, { marginTop: 10 }]}>
                 <TextInput
@@ -93,13 +128,23 @@ export default function Login() {
                   placeholder="Password"
                   placeholderTextColor={"#000"}
                   value={password}
-                  onChangeText={text => setPassword(text)}
+                  onChangeText={(text) => {
+                    setPassword(text)
+                    text == null || text == '' ? setPasswordError('Password is required*') : setPasswordError('')
+                  }}
                   secureTextEntry />
 
                 <Icon
                   name={'eye-outline'}
                   style={{ color: '#000', fontSize: 25 }} />
               </View>
+
+              {
+                passwordError !== '' &&
+                <View style={{ width: "100%", paddingHorizontal: 25, marginTop: 5 }}>
+                  <Text style={{ color: "red" }}>{passwordError}</Text>
+                </View>
+              }
 
               <View style={{ flexDirection: "row", marginTop: 10, alignItems: "center", width: '100%', paddingHorizontal: 20 }}>
                 <CheckBox
@@ -111,9 +156,17 @@ export default function Login() {
                 <Text style={{ color: "black", textAlign: "center" }}>I have reviewed and agree to the <Text style={{ color: "#6777ef" }}>Terms & conditions</Text></Text>
               </View>
 
-              <TouchableOpacity style={styles.buttonContainer} onPress={() => { onLogin() }}>
-                <Text style={{ flex: 1, color: "white", textAlign: "center", fontSize: 18 }}>Login</Text>
-              </TouchableOpacity>
+              {
+                toggleCheckBox === true ?
+
+                  <TouchableOpacity style={styles.buttonContainer} onPress={() => { onLogin() }}>
+                    <Text style={{ flex: 1, color: "white", textAlign: "center", fontSize: 18 }}>Login</Text>
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity style={[styles.buttonContainer, { backgroundColor: "#8a96a1", borderColor: "grey" }]} onPress={() => { message() }}>
+                    <Text style={{ flex: 1, color: "white", textAlign: "center", fontSize: 18 }}>Login</Text>
+                  </TouchableOpacity>
+              }
             </View>
           </View >
         </SafeAreaView>

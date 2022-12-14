@@ -28,6 +28,7 @@ export default function Profile() {
     axios.delete(url, config)
       .then(res => {
         if (res.data.code === 200) {
+          setOpenModal(false)
           setIsLoading(false)
           AsyncStorage.removeItem('cpad');
           AsyncStorage.clear()
@@ -38,7 +39,6 @@ export default function Profile() {
           });
           navigation.navigate('Login')
         }
-
       })
       .catch(err => {
         setIsLoading(false)
@@ -80,12 +80,13 @@ export default function Profile() {
 
       <View style={{ flex: 1, justifyContent: 'flex-start', paddingHorizontal: 15, alignItems: 'center', backgroundColor: "#000" }}>
         <Spinner isLoading={isLoading} />
-        <Toast />
-        <Image source={Avtar} style={{ height: 80, width: 80, borderRadius: 100, borderWidth: 1, borderColor: "white" }} />
-        <Text style={{ color: "white", marginTop: 10, fontWeight: "400" }}>Edit Profile</Text>
-
-
-
+        <View style={{ zIndex: 1 }}>
+          <Toast />
+        </View>
+        <TouchableOpacity style={{ justifyContent: "center", alignItems: "center" }}>
+          <Image source={Avtar} style={{ height: 80, width: 80, borderRadius: 100, borderWidth: 1, borderColor: "white" }} />
+          <Text style={{ color: "white", marginTop: 10, fontWeight: "400" }}>Edit Profile</Text>
+        </TouchableOpacity>
         <View style={[styles.inputContainer, { marginTop: 30 }]}>
           <TextInput
             autoCorrect={false}
@@ -114,7 +115,7 @@ export default function Profile() {
           />
         </View>
 
-        <TouchableOpacity style={styles.buttonContainer} >
+        <TouchableOpacity style={[styles.buttonContainer, { marginTop: 20 }]} >
           <Text style={{ flex: 1, color: "black", textAlign: "center", fontSize: 18 }}>Update Profile</Text>
         </TouchableOpacity>
 
@@ -182,6 +183,6 @@ const styles = StyleSheet.create({
     elevation: 3,
     alignItems: 'center',
     marginHorizontal: 5,
-    marginTop: 20
+    marginTop: 10
   },
 })

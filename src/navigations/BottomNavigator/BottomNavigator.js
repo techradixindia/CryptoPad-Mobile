@@ -24,7 +24,7 @@ const BottomNavigator = ({ navigation }) => {
             return <HomeIcon name="dashboard" size={25} style={{ color: focused ? "#87CEEB" : "grey", }} />
           },
 
-          headerTitleAlign: "left", headerTitle: "Dashboard", headerStyle: { backgroundColor: "#000" }, headerTintColor: "#fff"
+          headerTitleAlign: "left", headerTitle: "Dashboard", headerStyle: { backgroundColor: "#000" }, headerTintColor: "#fff", tabBarLabelStyle: { fontSize: 12 }
         }}
       />
 
@@ -33,7 +33,7 @@ const BottomNavigator = ({ navigation }) => {
           tabBarIcon: ({ focused }) => {
             return <Incomeicon name="money-symbol" size={25} style={{ color: focused ? "#87CEEB" : "grey", }} />
           },
-          headerTitleAlign: "left", headerTitle: "Income", headerStyle: { backgroundColor: "#000" }, headerTintColor: "#fff"
+          headerTitleAlign: "left", headerTitle: "Income", headerStyle: { backgroundColor: "#000" }, headerTintColor: "#fff", tabBarLabelStyle: { fontSize: 12 }
         }}
       />
 
@@ -53,7 +53,7 @@ const BottomNavigator = ({ navigation }) => {
               <Plus name="plus" size={30} color="skyblue" style={{ padding: 10 }} />
             </View>
           ),
-          headerTitleAlign: "left", headerTitle: "Wallets", headerStyle: { backgroundColor: "#000" }, headerTintColor: "#fff"
+          headerTitleAlign: "left", headerTitle: "Wallets", headerStyle: { backgroundColor: "#000" }, headerTintColor: "#fff", tabBarLabelStyle: { fontSize: 12 }
         }}
       />
 
@@ -63,7 +63,7 @@ const BottomNavigator = ({ navigation }) => {
             return <History name="history" size={25} style={{ color: focused ? "#87CEEB" : "grey", }} />
           },
 
-          headerTitleAlign: "left", headerTitle: "History", headerStyle: { backgroundColor: "#000" }, headerTintColor: "#fff"
+          headerTitleAlign: "left", headerTitle: "History", headerStyle: { backgroundColor: "#000" }, headerTintColor: "#fff", tabBarLabelStyle: { fontSize: 12 }
         }}
       />
       <Tab.Screen name="Profile" component={Profile}
@@ -72,7 +72,7 @@ const BottomNavigator = ({ navigation }) => {
             return <ProfileIcon name="user" size={25} style={{ color: focused ? "#87CEEB" : "grey", }} />
           },
 
-          headerTitleAlign: "left", headerTitle: "Profile", headerStyle: { backgroundColor: "#000" }, headerTintColor: "#fff"
+          headerTitleAlign: "left", headerTitle: "Profile", headerStyle: { backgroundColor: "#000" }, headerTintColor: "#fff", tabBarLabelStyle: { fontSize: 12 }
         }}
       />
     </Tab.Navigator>

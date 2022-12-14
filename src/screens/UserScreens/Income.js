@@ -18,10 +18,10 @@ const Income = ({ navigation }) => {
     };
 
     const data = {
-        labels: ["January", "February", "March", "April", "May", "June"],
+        labels: ["January", "February", "March", "April"],
         datasets: [
             {
-                data: [20, 45, 28, 80, 99, 43]
+                data: [50, 60, 70, 80]
             }
         ]
     };
@@ -38,7 +38,7 @@ const Income = ({ navigation }) => {
                         backgroundGradientFromOpacity: 1,
                         backgroundGradientTo: "red",
                         backgroundGradientToOpacity: 1,
-                        color: (opacity = 1) => `rgba(255, 255, 255, 1)`,
+                        color: (opacity = 1) => `rgba(255, 255, 255, 1)${opacity}`,
                         strokeWidth: 2, // optional, default 3
                         barPercentage: 0.5,
                         useShadowColorFromDataset: false
