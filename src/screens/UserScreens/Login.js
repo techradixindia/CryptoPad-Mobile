@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TouchableWithoutFeedback, SafeAreaView, Image, TextInput, StyleSheet, Dimensions, StatusBar, Keyboard } from 'react-native';
+import { View, Text, TouchableOpacity, TouchableWithoutFeedback, SafeAreaView, Image, TextInput, StyleSheet, Dimensions, StatusBar, Keyboard, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Logo from '../../assets/images/cryptopadFullLogo.png';
 import CheckBox from '@react-native-community/checkbox';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Feather';
+import Mailicon from "react-native-vector-icons/Feather"
 import { baseUrl } from '../../utils/env';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -22,6 +23,19 @@ export default function Login() {
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+
+  const [passwordVisibility, setPasswordVisibility] = useState(true);
+  const [rightIcon, setRightIcon] = useState('eye');
+
+  const handlePasswordVisibility = () => {
+    if (rightIcon === 'eye') {
+      setRightIcon('eye-off');
+      setPasswordVisibility(!passwordVisibility);
+    } else if (rightIcon === 'eye-off') {
+      setRightIcon('eye');
+      setPasswordVisibility(!passwordVisibility);
+    }
+  };
 
   const onLogin = () => {
     let error = 0;
@@ -69,7 +83,7 @@ export default function Login() {
           Toast.show({
             type: 'error',
             text1: 'Error',
-            text2: err
+            text2: err.response.data.errors[0].email
           });
         }
         )
@@ -77,11 +91,13 @@ export default function Login() {
   }
 
   const message = () => {
-    Toast.show({
-      type: 'error',
-      text1: 'Error',
-      text2: "Please agree to the terms & conditions"
-    });
+    if (email && password !== '') {
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: "Please agree to the terms & conditions"
+      });
+    }
   }
 
   return (
@@ -103,6 +119,8 @@ export default function Login() {
               <View style={styles.inputContainer}>
                 <TextInput
                   autoCorrect={false}
+                  autoCapitalize="none"
+                  enablesReturnKeyAutomatically
                   style={{ color: 'darkBlue', flex: 1 }}
                   placeholder="Email Address"
                   placeholderTextColor={"#000"}
@@ -112,7 +130,9 @@ export default function Login() {
                     text == null || text == '' ? setEmailError('Email is required*') : setEmailError('')
                   }}
                 />
-
+                <Mailicon
+                  name={'mail'}
+                  style={{ color: '#000', fontSize: 22 }} />
               </View>
               {
                 emailError !== '' &&
@@ -132,11 +152,14 @@ export default function Login() {
                     setPassword(text)
                     text == null || text == '' ? setPasswordError('Password is required*') : setPasswordError('')
                   }}
-                  secureTextEntry />
+                  secureTextEntry={passwordVisibility}
+                />
 
-                <Icon
-                  name={'eye-outline'}
-                  style={{ color: '#000', fontSize: 25 }} />
+                <Pressable onPress={handlePasswordVisibility}>
+                  <Icon
+                    name={rightIcon}
+                    style={{ color: '#000', fontSize: 22 }} />
+                </Pressable>
               </View>
 
               {
@@ -157,8 +180,7 @@ export default function Login() {
               </View>
 
               {
-                toggleCheckBox === true ?
-
+                (email !== '' && password !== '' && toggleCheckBox === true) ?
                   <TouchableOpacity style={styles.buttonContainer} onPress={() => { onLogin() }}>
                     <Text style={{ flex: 1, color: "white", textAlign: "center", fontSize: 18 }}>Login</Text>
                   </TouchableOpacity>
