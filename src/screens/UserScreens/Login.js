@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TouchableWithoutFeedback, SafeAreaView, Image, TextInput, StyleSheet, Dimensions, StatusBar, Keyboard, Pressable } from 'react-native';
+import { View, Text, TouchableOpacity, TouchableWithoutFeedback, SafeAreaView, Image, TextInput, StyleSheet, Dimensions, StatusBar, Keyboard, Pressable, Linking } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Logo from '../../assets/images/cryptopadFullLogo.png';
+import Logo from '../../assets/images/cryplogo.png';
 import CheckBox from '@react-native-community/checkbox';
 import Icon from 'react-native-vector-icons/Feather';
 import Mailicon from "react-native-vector-icons/Feather"
@@ -37,7 +37,7 @@ export default function Login() {
     }
   };
 
-  const onLogin = () => {
+  const onLogin = async () => {
     let error = 0;
     if (email == null || email == '') {
       setEmailError("Email is required*")
@@ -67,7 +67,8 @@ export default function Login() {
         .then((res) => {
           setIsLoading(false)
           const userInfo = res.data.data
-          AsyncStorage.setItem("cpad", JSON.stringify(userInfo))
+          AsyncStorage.setItem("cpad", JSON.parse(userInfo))
+          console.log(">>>>>", AsyncStorage.getItem("cpad", JSON.stringify(userInfo)));
           if (res.data.data.status === 200) {
             navigation.navigate("BottomNavigator")
             Toast.show({
@@ -99,6 +100,11 @@ export default function Login() {
       });
     }
   }
+
+  const openUrlAbout = () => {
+    Linking.openURL('https://cryptopad.ai/account/term')
+  }
+
 
   return (
     <View style={[{ flex: 1, backgroundColor: "white" }]}>
@@ -176,7 +182,11 @@ export default function Login() {
                   value={toggleCheckBox}
                   onValueChange={(newValue) => setToggleCheckBox(newValue)} />
 
-                <Text style={{ color: "black", textAlign: "center" }}>I have reviewed and agree to the <Text style={{ color: "#6777ef" }}>Terms & conditions</Text></Text>
+                <TouchableOpacity onPress={() => openUrlAbout()}>
+                  <Text style={{ color: "black", textAlign: "center" }}>I have reviewed and agree to the
+                    <Text style={{ color: "#6777ef" }}> Terms & conditions</Text>
+                  </Text>
+                </TouchableOpacity>
               </View>
 
               {

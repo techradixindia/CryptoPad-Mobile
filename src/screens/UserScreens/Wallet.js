@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View, TextInput, FlatList, Image, } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, TextInput, FlatList, Image, TouchableWithoutFeedback, Keyboard, SafeAreaView, ScrollView, } from 'react-native'
 import React from 'react'
 import { ProgressBar } from 'react-native-paper';
 import DummyData from './DummyData';
@@ -10,6 +10,9 @@ const MyOrders = () => {
   return (
 
     <View style={{ flex: 1, backgroundColor: "#000", paddingHorizontal: 10 }}>
+      {/* <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
+        <SafeAreaView> */}
+
       <View style={{ flex: 1 }}>
         <View style={{ justifyContent: "center", alignItems: "flex-start", flexDirection: "row", marginTop: 20 }}>
           <View style={{ flex: 3, marginTop: 10 }}>
@@ -43,6 +46,9 @@ const MyOrders = () => {
         </View>
       </View>
 
+
+      {/* </SafeAreaView>
+      </TouchableWithoutFeedback> */}
       <View style={{ flex: 1.5 }}>
         <FlatList
           data={DummyData}
@@ -60,7 +66,7 @@ const MyOrders = () => {
                 <Text style={styles.text2}>$3'545.63</Text>
                 <Text></Text>
               </View>
-              <View style={{ flex: 0.5, justifyContent: "center", alignItems: "center" }}>
+              <View style={{ flex: 0.5, justifyContent: "center", alignItems: "center", borderLeftWidth: 1, borderLeftColor: "#303030" }}>
                 <Plus name="plus" size={20} color="white" />
               </View>
             </View>
@@ -132,8 +138,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
 })
-
-
-
 
 

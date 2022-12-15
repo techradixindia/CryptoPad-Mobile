@@ -4,6 +4,7 @@ import DummyData from './DummyData'
 import PieChart from 'react-native-pie-chart';
 import Arrow from "react-native-vector-icons/MaterialIcons"
 import Box from "react-native-vector-icons/MaterialCommunityIcons"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const HomeScreen = () => {
 
   const widthAndHeight = 120
@@ -44,8 +45,8 @@ const HomeScreen = () => {
             sliceColor={sliceColor}
             doughnut={true}
             coverRadius={0.45}
-            coverFill={'#000'}
-          />
+            coverFill={'#000'} />
+
           <View style={{ marginLeft: 40, flexDirection: "column" }}>
             <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
               <Box name="checkbox-blank" color={"#d2ecf6"} size={15} />
