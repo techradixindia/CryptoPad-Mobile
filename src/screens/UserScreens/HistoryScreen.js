@@ -12,7 +12,7 @@ const HistoryScreen = () => {
           <View style={styles.container}>
             <View style={{ flex: 1.5, justifyContent: "center", alignItems: "flex-start" }}>
               <Text style={{ fontSize: 16, color: "white" }}>{item.name}</Text>
-              <Text style={{ color: "#3cbb3d ", fontWeight: "bold", marginTop: 5 }}>Buy</Text>
+              <Text style={{ color: "#3cbb3d", fontWeight: "bold", marginTop: 5 }}>Buy</Text>
             </View>
             <View style={{ flex: 1, justifyContent: "center" }}>
               <Text style={styles.text1}>Date</Text>
@@ -28,7 +28,7 @@ const HistoryScreen = () => {
             </View>
             <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
               <Text style={{ color: "#8a96a1" }}>Result</Text>
-              <Text style={{ color: "#3cbb3d ", marginTop: 5 }}>+27.86%</Text>
+              <Text style={{ color: "#3cbb3d", marginTop: 5 }}>+27.86%</Text>
             </View>
           </View>
         } />

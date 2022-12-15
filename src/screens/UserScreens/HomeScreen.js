@@ -35,7 +35,7 @@ const HomeScreen = () => {
       <View style={{ flex: 1, backgroundColor: "#131919" }}>
         <Text style={{ fontSize: 24, textAlign: 'center', color: '#8a96a1' }}>Account Value & Day Change</Text>
         <Text style={{ fontSize: 22, textAlign: 'center', color: 'white' }}>$135,112.91</Text>
-        <Text style={{ fontSize: 22, textAlign: 'center', color: '#3cbb3d ' }}>+$4,872.97 (3.74%)</Text>
+        <Text style={{ fontSize: 22, textAlign: 'center', color: '#3cbb3d' }}>+$4,872.97 (3.74%)</Text>
 
         <View style={styles.Chartcontainer}>
           <PieChart
@@ -74,12 +74,12 @@ const HomeScreen = () => {
               </View>
               <View style={{ flex: 1, justifyContent: "center", alignItems: "center", borderBottomWidth: 1, borderBottomColor: "#8a96a1" }}>
                 <Text style={{ color: "white" }}>$8.05</Text>
-                <Text style={{ color: "#3cbb3d ", marginTop: 5 }}>+$1.99</Text>
+                <Text style={{ color: "#3cbb3d", marginTop: 5 }}>+$1.99</Text>
               </View>
               <View style={{ flex: 1, justifyContent: "center", alignItems: "flex-end", borderBottomWidth: 1, borderBottomColor: "#8a96a1" }}>
                 <Text style={{ color: "white" }}>2</Text>
                 <Text style={{ color: "white", marginTop: 5, fontSize: 16 }}>$27.86</Text>
-                <Text style={{ color: "#3cbb3d ", marginTop: 5 }}>+$3.98 (24.72%)</Text>
+                <Text style={{ color: "#3cbb3d", marginTop: 5 }}>+$3.98 (24.72%)</Text>
               </View>
               <View style={{ flex: 0.3, justifyContent: "center", alignItems: "center", borderBottomWidth: 1, borderBottomColor: "#8a96a1" }}>
 
