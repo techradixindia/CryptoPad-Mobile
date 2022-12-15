@@ -6,7 +6,7 @@ import Profile from '../../screens/UserScreens/Profile';
 import HomeIcon from 'react-native-vector-icons/AntDesign'
 import Incomeicon from 'react-native-vector-icons/Fontisto'
 import History from 'react-native-vector-icons/MaterialCommunityIcons'
-import ProfileIcon from 'react-native-vector-icons/FontAwesome'
+import ProfileIcon from 'react-native-vector-icons/Ionicons'
 import Plus from "react-native-vector-icons/Entypo"
 import Walleticon from "react-native-vector-icons/Ionicons"
 import HistoryScreen from '../../screens/UserScreens/HistoryScreen';
@@ -69,7 +69,7 @@ const BottomNavigator = ({ navigation }) => {
       <Tab.Screen name="Profile" component={Profile}
         options={{
           tabBarIcon: ({ focused }) => {
-            return <ProfileIcon name="user" size={25} style={{ color: focused ? "#87CEEB" : "grey", }} />
+            return <ProfileIcon name="person-outline" size={25} style={{ color: focused ? "#87CEEB" : "grey", }} />
           },
 
           headerTitleAlign: "left", headerTitle: "Profile", headerStyle: { backgroundColor: "#000" }, headerTintColor: "#fff", tabBarLabelStyle: { fontSize: 12 }

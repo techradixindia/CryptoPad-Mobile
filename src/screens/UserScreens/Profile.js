@@ -18,10 +18,10 @@ export default function Profile() {
   const onClickLogout = async () => {
     setIsLoading(true)
     const value = await AsyncStorage.getItem('cpad');
-    var userInfo = JSON.parse(value);
+    var updatedValue = JSON.parse(value);
     let config = {
       headers: {
-        "Authorization": `${userInfo.results.access_token}`,
+        "Authorization": `${updatedValue.results.access_token}`,
       },
     }
     let url = baseUrl + 'logout/'
