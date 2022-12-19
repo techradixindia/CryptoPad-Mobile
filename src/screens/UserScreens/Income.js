@@ -29,6 +29,9 @@ const Income = ({ navigation }) => {
     return (
         <ScrollView style={{ flex: 1, backgroundColor: '#000', paddingHorizontal: 10 }}>
             <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                <View style={{ flex: 1, justifyContent: "flex-start", alignItems: "flex-start", width: "100%" }}>
+                    <Text style={{ color: "#8a96a1", fontSize: 16 }}>Investment Income</Text>
+                </View>
                 <BarChart
                     data={data}
                     width={Dimensions.get('window').width - 20}
@@ -43,7 +46,7 @@ const Income = ({ navigation }) => {
                         barPercentage: 0.5,
                         useShadowColorFromDataset: false
                     }}
-                    style={{ borderRadius: 10, alignSelf: "center" }}
+                    style={{ borderRadius: 10, alignSelf: "center", marginTop: 10 }}
                 />
                 <View style={{ justifyContent: "center", alignItems: "center", marginTop: 15 }}>
                     <Text style={{ color: "#fff", fontSize: 18, fontWeight: "bold" }}>$1,028.48</Text>

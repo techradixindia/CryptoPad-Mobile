@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Image, StatusBar } from 'react-native';
 import React, { useEffect } from 'react';
 import Logo from '../../assets/images/cryptopadLogo.png';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Animatable from 'react-native-animatable';
 
 const SplashScreen = ({ navigation }) => {
 
@@ -25,7 +26,13 @@ const SplashScreen = ({ navigation }) => {
     <View style={styles.container}>
       <StatusBar hidden={true} />
       <View style={styles.logoContainer}>
-        <Image source={Logo} style={styles.logo} />
+        <Animatable.Image
+          animation="flipInX"
+          duration={2500}
+          source={Logo}
+          style={styles.logo}
+          resizeMode="stretch"
+        />
       </View>
     </View>
   );

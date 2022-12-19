@@ -45,7 +45,7 @@ export default function Profile() {
         Toast.show({
           type: 'error',
           text1: 'error',
-          text2: err.response.data.errors[0].error
+          text2: 'Something went wrong'
         });
       })
 
