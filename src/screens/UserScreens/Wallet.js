@@ -34,7 +34,7 @@ const MyOrders = () => {
               style={{ color: "#8a96a1", fontSize: 18 }} />
             <TextInput
               autoCorrect={false}
-              style={{ color: 'darkBlue', flex: 1, paddingVertical: 8 }}
+              style={{ color: 'white', flex: 1, paddingVertical: 8 }}
               placeholder="Search for wallet or exchange"
               placeholderTextColor={"#8a96a1"}
             />

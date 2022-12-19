@@ -4,12 +4,12 @@ import DummyData from './DummyData'
 import PieChart from 'react-native-pie-chart';
 import Arrow from "react-native-vector-icons/MaterialIcons"
 import Box from "react-native-vector-icons/MaterialCommunityIcons"
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const HomeScreen = () => {
 
   const widthAndHeight = 120
-  const series = [90, 10]
-  const sliceColor = ['#2196F3', '#d2ecf6',]
+  const series = [10, 90]
+  const sliceColor = ['#d2ecf6', '#2196F3']
 
   const header = () => {
     return (
@@ -26,9 +26,8 @@ const HomeScreen = () => {
           <Text style={{ fontSize: 14, fontWeight: "400", color: "#8a96a1", }}>Qty, Mkt Val, G/L</Text>
         </View>
       </View>
-    );
+    )
   }
-
 
   return (
     <View style={{ flex: 1, backgroundColor: '#000', paddingHorizontal: 5 }}>
@@ -83,14 +82,11 @@ const HomeScreen = () => {
                 <Text style={{ color: "#3cbb3d", marginTop: 5 }}>+$3.98 (24.72%)</Text>
               </View>
               <View style={{ flex: 0.3, justifyContent: "center", alignItems: "center", borderBottomWidth: 1, borderBottomColor: "#8a96a1" }}>
-
                 <Arrow name="arrow-forward-ios" size={20} color={"#8a96a1"} />
               </View>
             </View>
           } />
       </View>
-
-
     </View>
   )
 }
@@ -117,13 +113,12 @@ const styles = StyleSheet.create({
     color: "#fff",
     marginLeft: 20
   },
-
   Chartcontainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: "center",
     flexDirection: "row",
-    paddingHorizontal: 100
+    paddingHorizontal: 100,
   },
   title: {
     fontSize: 24,
